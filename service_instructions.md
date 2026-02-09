@@ -4,9 +4,8 @@
 
 ```bash
 # Copy to LaunchAgents
-cp /Users/derek/claude_run/com.derek.clauderun.plist ~/Library/LaunchAgents/
-
 # Load the service
+cp /Users/derek/claude_run/com.derek.clauderun.plist ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.derek.clauderun.plist
 ```
 
