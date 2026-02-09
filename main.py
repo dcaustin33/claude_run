@@ -19,20 +19,9 @@ def log(message):
 def get_next_run_time():
     """Calculate the next scheduled run time: 4:01 AM EST or every 5 hours after that."""
     now = datetime.now(EST)
-    today_start = now.replace(hour=START_HOUR, minute=START_MINUTE, second=0, microsecond=0)
-
-    if now < today_start:
-        return today_start
-
-    hours_since_start = (now - today_start).total_seconds() / 3600
-    intervals_passed = int(hours_since_start // INTERVAL_HOURS)
-    next_run = today_start + timedelta(hours=(intervals_passed + 1) * INTERVAL_HOURS)
-
-    tomorrow_start = today_start + timedelta(days=1)
-    if next_run >= tomorrow_start:
-        return tomorrow_start
-
-    return next_run
+    # add 60 minutes to now
+    now = now + timedelta(minutes=60)
+    return now
 
 def get_prompt():
     prompt_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "prompt.txt")
@@ -77,7 +66,7 @@ while True:
 
     if now >= next_run:
         run_claude()
-        rephrase_prompt()
+        # rephrase_prompt()
         next_run = get_next_run_time()
         log(f"Next run scheduled for {next_run.strftime('%Y-%m-%d %H:%M:%S')}")
 

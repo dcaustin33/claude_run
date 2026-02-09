@@ -1,1 +1,1 @@
-Search the web for today's top 3 news stories and provide a brief summary of each.
+Find the top 3 news stories from today and write a short summary for each one.
